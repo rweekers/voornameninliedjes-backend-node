@@ -7,7 +7,7 @@ var app = express();
 var pg = require('pg');
 var connString = 'postgres://vil:kzciaMUwTvd4y9Q0KYI6@localhost/namesandsongs';
 
-app.get('/node/api/song', function(request, response) {
+app.get('/namesandsongs/api/song', function(request, response) {
     //this starts initializes a connection pool 
 	//it will keep idle connections open for a (configurable) 30 seconds 
 	//and set a limit of 20 (also configurable) 
@@ -24,15 +24,7 @@ app.get('/node/api/song', function(request, response) {
 	    if(err) {
 	      return console.error('error running query', err);
 	    }
-	    var l = result.rows.length;
-	    var r = result.rows;
-
-	    for (i = 0; i < l; i++){
-	    	console.log(r[i].artist);
-	    	results.push(r[i].artist);
-		}
-
-        return response.json(result);
+      return response.json(result.rows);
 
 	  });
 	});
