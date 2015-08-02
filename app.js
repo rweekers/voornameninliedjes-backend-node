@@ -7,33 +7,33 @@ var app = express();
 var pg = require('pg');
 var connString = 'postgres://vil:kzciaMUwTvd4y9Q0KYI6@localhost/namesandsongs';
 
-app.get('/namesandsongs/api/song', function(request, response) {
-    //this starts initializes a connection pool 
-	//it will keep idle connections open for a (configurable) 30 seconds 
-	//and set a limit of 20 (also configurable) 
+app.get('/api/songs', function(request, response) {
+    //this starts initializes a connection pool
+	//it will keep idle connections open for a (configurable) 30 seconds
+	//and set a limit of 20 (also configurable)
 	pg.connect(connString, function(err, client, done) {
 	  var results = [];
 	  if(err) {
 	    return console.error('error fetching client from pool', err);
 	  }
 	  // client.query('SELECT $1::int AS number', ['1'], function(err, result) {
-	  client.query('SELECT * FROM song', function(err, result) {
-	    //call `done()` to release the client back to the pool 
+	  client.query('SELECT id, artist, title FROM song LIMIT 20', function(err, result) {
+	    //call `done()` to release the client back to the pool
 	    done();
-	    
+
 	    if(err) {
 	      return console.error('error running query', err);
 	    }
-      return response.json(result.rows);
+      return response.json({songs: result.rows});
 
 	  });
 	});
 });
 
-app.get('/namesandsongs/api/song/:id', function(request, response) {
-    //this starts initializes a connection pool 
-	//it will keep idle connections open for a (configurable) 30 seconds 
-	//and set a limit of 20 (also configurable) 
+app.get('/api/songs/:id', function(request, response) {
+    //this starts initializes a connection pool
+	//it will keep idle connections open for a (configurable) 30 seconds
+	//and set a limit of 20 (also configurable)
 	pg.connect(connString, function(err, client, done) {
 	  var id = request.params.id;
 	  if(err) {
@@ -41,13 +41,14 @@ app.get('/namesandsongs/api/song/:id', function(request, response) {
 	  }
 	  // client.query('SELECT $1::int AS number', ['1'], function(err, result) {
 	  client.query('SELECT * FROM song WHERE id = $1', [id], function(err, result) {
-	    //call `done()` to release the client back to the pool 
+	    //call `done()` to release the client back to the pool
 	    done();
-	    
+
 	    if(err) {
 	      return console.error('error running query', err);
 	    }
-      return response.json(result.rows[0]);
+      console.log("Returned " + result.rows[0].artist);
+      return response.json({song: result.rows[0]});
 
 	  });
 	});
