@@ -17,7 +17,7 @@ app.get('/api/songs', function(request, response) {
 	    return console.error('error fetching client from pool', err);
 	  }
 	  // client.query('SELECT $1::int AS number', ['1'], function(err, result) {
-	  client.query('SELECT id, artist, title FROM song LIMIT 20', function(err, result) {
+	  client.query('SELECT id, artist, title, background FROM song WHERE background IS NOT NULL LIMIT 20', function(err, result) {
 	    //call `done()` to release the client back to the pool
 	    done();
 
@@ -40,14 +40,13 @@ app.get('/api/songs/:id', function(request, response) {
 	    return console.error('error fetching client from pool', err);
 	  }
 	  // client.query('SELECT $1::int AS number', ['1'], function(err, result) {
-	  client.query('SELECT * FROM song WHERE id = $1', [id], function(err, result) {
+	  client.query('SELECT id, artist, title, background FROM song WHERE id = $1', [id], function(err, result) {
 	    //call `done()` to release the client back to the pool
 	    done();
 
 	    if(err) {
 	      return console.error('error running query', err);
 	    }
-      console.log("Returned " + result.rows[0].artist);
       return response.json({song: result.rows[0]});
 
 	  });
