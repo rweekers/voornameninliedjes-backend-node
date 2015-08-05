@@ -7,7 +7,7 @@ var app = express();
 var pg = require('pg');
 var connString = 'postgres://vil:kzciaMUwTvd4y9Q0KYI6@localhost/namesandsongs';
 
-app.get('/api/songs', function(request, response) {
+app.get('/api/n/songs', function(request, response) {
     //this starts initializes a connection pool
 	//it will keep idle connections open for a (configurable) 30 seconds
 	//and set a limit of 20 (also configurable)
@@ -17,7 +17,7 @@ app.get('/api/songs', function(request, response) {
 	    return console.error('error fetching client from pool', err);
 	  }
 	  // client.query('SELECT $1::int AS number', ['1'], function(err, result) {
-	  client.query('SELECT id, artist, title, background FROM song WHERE background IS NOT NULL LIMIT 20', function(err, result) {
+	  client.query('SELECT id, artist, title FROM song WHERE background IS NOT NULL LIMIT 20', function(err, result) {
 	    //call `done()` to release the client back to the pool
 	    done();
 
@@ -30,7 +30,7 @@ app.get('/api/songs', function(request, response) {
 	});
 });
 
-app.get('/api/songs/:id', function(request, response) {
+app.get('/api/n/songs/:id', function(request, response) {
     //this starts initializes a connection pool
 	//it will keep idle connections open for a (configurable) 30 seconds
 	//and set a limit of 20 (also configurable)
