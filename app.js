@@ -40,7 +40,7 @@ app.get('/api/n/songs/:id', function(request, response) {
 	    return console.error('error fetching client from pool', err);
 	  }
 	  // client.query('SELECT $1::int AS number', ['1'], function(err, result) {
-	  client.query('SELECT id, artist, title, background FROM song WHERE id = $1', [id], function(err, result) {
+	  client.query('SELECT id, artist, title, image, background FROM song WHERE id = $1', [id], function(err, result) {
 	    //call `done()` to release the client back to the pool
 	    done();
 
