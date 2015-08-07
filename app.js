@@ -8,6 +8,16 @@ var pg = require('pg');
 var connString = 'postgres://vil:kzciaMUwTvd4y9Q0KYI6@localhost/namesandsongs';
 
 app.get('/api/n/songs/', function(request, response) {
+	var offset = request.query.offset;
+	var limit = request.query.limit;
+	var stringAppend = " ";
+	if ( limit !== undefined && limit) {
+		stringAppend += "LIMIT " + limit + " ";
+	}
+	if ( offset !== undefined && limit) {
+		stringAppend += "OFFSET " + offset;
+	}
+	console.log("StringAppend: " + stringAppend);
 	//this starts initializes a connection pool
 	//it will keep idle connections open for a (configurable) 30 seconds
 	//and set a limit of 20 (also configurable)
@@ -17,7 +27,7 @@ app.get('/api/n/songs/', function(request, response) {
 	    return console.error('error fetching client from pool', err);
 	  }
 	  // client.query('SELECT $1::int AS number', ['1'], function(err, result) {
-	  client.query('SELECT id, artist, title FROM song WHERE background IS NOT NULL LIMIT ' + request.query.limit, function(err, result) {
+	  client.query('SELECT id, artist, title FROM song WHERE 1=1 ORDER BY artist ASC ' + stringAppend, function(err, result) {
 	    //call `done()` to release the client back to the pool
 	    done();
 
