@@ -34,7 +34,7 @@ app.get('/api/n/songs/', function(request, response) {
 	    if(err) {
 	      return console.error('error running query', err);
 	    }
-      return response.json({songs: result.rows});
+      return response.json({songs: result.rows, meta: {total: 788}});
 
 	  });
 	});
