@@ -16,7 +16,7 @@ app.get('/api/n/songs/', function(request, response) {
 
   // this will add a filter to the query
   if ( filter !== undefined && filter) {
-    var filterLC = filter.toLowerCase();
+    var filterLC = filter.toLowerCase().trim();
     // add where clause
     stringFilter += "AND (LOWER(artist) LIKE '%" + filterLC + "%' OR LOWER(title) LIKE '%" + filterLC + "%') ";
     offset = 0;
