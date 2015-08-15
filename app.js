@@ -3,9 +3,17 @@ var app = express();
 
 // var redis = require('redis');
 // var client = redis.createClient();
+var fs = require('fs');
+var nconf = require('nconf'); 
+
+nconf.argv()
+     .env()
+     .file({ file: 'config.json' });
+
+console.log('NODE_ENV: ' + nconf.get('NODE_ENV'));
 
 var pg = require('pg');
-var connString = 'postgres://vil:kzciaMUwTvd4y9Q0KYI6@localhost/namesandsongs';
+var connString = 'postgres://' + nconf.get('database:username') + ':' + nconf.get('database:password') + '@' + nconf.get('database:host') + '/' + nconf.get('database:name');
 
 app.get('/api/n/songs/', function(request, response) {
 	var offset = request.query.offset;
