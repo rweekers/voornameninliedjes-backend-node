@@ -1,0 +1,27 @@
+{
+  "name": "voornameninliedjes-backend-node",
+  "version": "1.0.0",
+  "description": "The node backend voor the website 'Voornamen in liedjes'",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.13.3",
+    "pg": "^4.4.1",
+    "nconf": "^0.7.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "NODE_ENV=test node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://rweekers@bitbucket.org/rweekers/voornameninliedjes-backend-node.git"
+  },
+  "keywords": [
+    "node",
+    "postgres",
+    "express"
+  ],
+  "author": "Remco Weekers",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/rweekers/voornameninliedjes-backend-node#readme"
+}
