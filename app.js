@@ -85,3 +85,5 @@ app.get('/api/n/songs/:id', function(request, response) {
 app.listen(3000, function() {
 	console.log('Listening on port 3000');
 });
+
+module.exports = app;
