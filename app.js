@@ -45,17 +45,21 @@ app.get('/api/n/songs/', function(request, response) {
 	    return console.error('error fetching client from pool', err);
 	  }
 	  query = 'SELECT id, artist, title FROM song WHERE 1=1' + stringFilter + 'ORDER BY artist ASC ' + stringAppend;
+	  queryTotal = 'SELECT COUNT(1) AS TOTAL FROM song WHERE 1=1' + stringFilter;
     console.log("Query: " + query);
-    client.query(query, function(err, result) {
-	    //call `done()` to release the client back to the pool
-	    done();
+    console.log("Query total: " + queryTotal);
+    client.query(queryTotal, function(err, resultTotal) {
+    	client.query(query, function(err, result) {
+	    	//call `done()` to release the client back to the pool
+	    	done();
 
-	    if(err) {
-	      return console.error('error running query', err);
-	    }
-      return response.json({songs: result.rows, meta: {total: 788}});
+	    	if(err) {
+	     		return console.error('error running query', err);
+	    	}
+      	return response.json({songs: result.rows, meta: {total: resultTotal.rows[0].total}});
 
-	  });
+	  	});
+    });
 	});
 });
 
