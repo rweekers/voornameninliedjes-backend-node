@@ -10,10 +10,14 @@ nconf.argv()
      .env()
      .file({ file: 'config.json' });
 
-console.log('NODE_ENV: ' + nconf.get('NODE_ENV'));
-
 var pg = require('pg');
-var connString = 'postgres://' + nconf.get('database:username') + ':' + nconf.get('database:password') + '@' + nconf.get('database:host') + '/' + nconf.get('database:name');
+
+var db = nconf.get('database:name');
+if (nconf.get('NODE_ENV') === 'test') {
+	console.log('NODE_ENV: ' + nconf.get('NODE_ENV'));
+	db = nconf.get('database:testname');
+}
+var connString = 'postgres://' + nconf.get('database:username') + ':' + nconf.get('database:password') + '@' + nconf.get('database:host') + '/' + db;
 
 app.get('/api/n/songs/', function(request, response) {
 	var offset = request.query.offset;
