@@ -19,12 +19,38 @@ if (nconf.get('NODE_ENV') === 'test') {
 }
 var connString = 'postgres://' + nconf.get('database:username') + ':' + nconf.get('database:password') + '@' + nconf.get('database:host') + '/' + db;
 
+var totalPages = function(total, perPage) {
+  return Math.ceil(total/perPage);
+};
+
+var range= function(page, perPage) {
+  var s = (page - 1) * perPage;
+  var e = s + perPage - 1;
+
+  console.log('Start en end ' + s + ', ' + e);
+
+  return {start: s, end: e};
+};
+
+var makeResponse = function(req) {
+  if (req.query.page && req.query.page != 'all') {
+    return makePagedResponse(req.query.page,req.query.per_page,req.query.sortByField);
+  }
+  else {
+    return {
+      "songs": makeAllFixtures()
+    };
+  }
+};
+
 app.get('/api/n/songs/', function(request, response) {
-	var offset = request.query.offset;
-	var limit = request.query.limit;
   var filter = request.query.filter;
 	var stringAppend = " ";
   var stringFilter = " ";
+  var sortByField = request.query.sortByField;
+
+  var page = request.query.page;
+  var perPage = request.query.per_page;
 
   // this will add a filter to the query
   if ( filter !== undefined && filter) {
@@ -34,12 +60,15 @@ app.get('/api/n/songs/', function(request, response) {
     offset = 0;
   }
 
-	if ( limit !== undefined && limit) {
-		stringAppend += "LIMIT " + limit + " ";
-	}
-	if ( offset !== undefined && limit) {
-		stringAppend += "OFFSET " + offset;
-	}
+  if (request.query.page && request.query.page != 'all') {
+  	var r = range(page, perPage);
+	  var start = r['start'];
+	  var end = r['end'];
+	  var limit = end - start;
+	  stringAppend += "LIMIT " + limit + " ";
+		stringAppend += "OFFSET " + start;
+  }
+
 	//this starts initializes a connection pool
 	//it will keep idle connections open for a (configurable) 30 seconds
 	//and set a limit of 20 (also configurable)
@@ -60,7 +89,7 @@ app.get('/api/n/songs/', function(request, response) {
 	    	if(err) {
 	     		return console.error('error running query', err);
 	    	}
-      	return response.json({songs: result.rows, meta: {total: resultTotal.rows[0].total}});
+      	return response.json({songs: result.rows, meta: {total_pages: resultTotal.rows[0].total}});
 
 	  	});
     });
