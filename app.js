@@ -25,11 +25,7 @@ var totalPages = function(total, perPage) {
 
 var range= function(page, perPage) {
   var s = (page - 1) * perPage;
-  var e = s + perPage - 1;
-
-  console.log('Start en end ' + s + ', ' + e);
-
-  return {start: s, end: e};
+  return s;
 };
 
 var makeResponse = function(req) {
@@ -47,10 +43,10 @@ app.get('/api/n/songs/', function(request, response) {
   var filter = request.query.filter;
 	var stringAppend = " ";
   var stringFilter = " ";
-  var sortByField = request.query.sortByField;
 
   var page = request.query.page;
   var perPage = request.query.per_page;
+  var sortByField = request.query.sortByField;
 
   // this will add a filter to the query
   if ( filter !== undefined && filter) {
@@ -61,11 +57,8 @@ app.get('/api/n/songs/', function(request, response) {
   }
 
   if (request.query.page && request.query.page != 'all') {
-  	var r = range(page, perPage);
-	  var start = r['start'];
-	  var end = r['end'];
-	  var limit = end - start;
-	  stringAppend += "LIMIT " + limit + " ";
+  	var start = range(page, perPage);
+	  stringAppend += "LIMIT " + perPage + " ";
 		stringAppend += "OFFSET " + start;
   }
 
