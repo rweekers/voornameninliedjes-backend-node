@@ -4,7 +4,7 @@ var app = express();
 // var redis = require('redis');
 // var client = redis.createClient();
 var fs = require('fs');
-var nconf = require('nconf'); 
+var nconf = require('nconf');
 
 nconf.argv()
      .env()
@@ -72,8 +72,6 @@ app.get('/api/n/songs/', function(request, response) {
 	  }
 	  query = 'SELECT id, artist, title FROM song WHERE 1=1' + stringFilter + 'ORDER BY artist ASC ' + stringAppend;
 	  queryTotal = 'SELECT COUNT(1) AS TOTAL FROM song WHERE 1=1' + stringFilter;
-    console.log("Query: " + query);
-    console.log("Query total: " + queryTotal);
     client.query(queryTotal, function(err, resultTotal) {
     	client.query(query, function(err, result) {
 	    	//call `done()` to release the client back to the pool
