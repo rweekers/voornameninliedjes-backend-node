@@ -4,9 +4,9 @@
   "description": "The node backend voor the website 'Voornamen in liedjes'",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.13.3",
-    "pg": "^4.4.1",
-    "nconf": "^0.7.2"
+    "express": "^4.13.4",
+    "nconf": "^0.7.2",
+    "pg": "^4.4.6"
   },
   "devDependencies": {
     "supertest": "^1.0.1"
