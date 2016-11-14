@@ -1,5 +1,8 @@
 var express = require('express');
+var cors = require('cors');
 var app = express();
+
+app.use(cors());
 
 // var redis = require('redis');
 // var client = redis.createClient();
@@ -80,7 +83,8 @@ app.get('/api/n/songs/', function(request, response) {
 	    	if(err) {
 	     		return console.error('error running query', err);
 	    	}
-      	return response.json({songs: result.rows, meta: {total_pages: totalPages(resultTotal.rows[0].total,perPage)}});
+      	// return response.json({data: result.rows, meta: {total_pages: totalPages(resultTotal.rows[0].total,perPage)}});
+        return response.json({data: result.rows});
 
 	  	});
     });
