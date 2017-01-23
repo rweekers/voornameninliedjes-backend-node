@@ -6,10 +6,12 @@
   "dependencies": {
     "express": "^4.13.4",
     "nconf": "^0.7.2",
-    "pg": "^4.4.6"
+    "pg": "^4.4.6",
+    "cors": "^2.8.1"
   },
   "devDependencies": {
-    "supertest": "^1.0.1"
+    "supertest": "^1.0.1",
+    "mocha": "*"
   },
   "scripts": {
     "test": "node test.js"
