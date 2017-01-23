@@ -5,19 +5,11 @@ var fs = require('fs');
 var nconf = require('nconf'); 
 
 var pg = require('pg');
-var config = {
-  user: 'postgres',
-  database: 'travis_ci_test',
-  password: '',
-  host: 'localhost',
-  port: 5432,
-  max: 10,
-  idleTimeoutMillis: 30000,
-};
+var client = new pg.Client();
 
 beforeEach(function() {
   console.log("DB connString: " + config);
-  pg.connect(config, function(err, client, done) {
+  client.connect(function(err, client, done) {
     if(err) {
       return console.error('error fetching client from pool', err);
     }
