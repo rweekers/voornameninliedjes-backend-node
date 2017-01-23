@@ -5,7 +5,7 @@ var fs = require('fs');
 var nconf = require('nconf'); 
 
 var pg = require('pg');
-var connString = 'postgres://postgres:postgres@127.0.0.1:5432/travis_ci_test';
+var connString = 'postgres://postgres@127.0.0.1:5432/travis_ci_test';
 
 beforeEach(function() {
   console.log("DB connString: " + connString);
