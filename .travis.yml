@@ -1,3 +1,9 @@
 language: node_js
 node_js:
   - "6"
+
+addons:
+  artifacts:
+    paths:
+      - .karma/
+      - ./node_modules/mocha/bin/mocha
