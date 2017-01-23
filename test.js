@@ -5,7 +5,16 @@ var fs = require('fs');
 var nconf = require('nconf'); 
 
 var pg = require('pg');
-var client = new pg.Client();
+var config = {
+   user: 'postgres',
+   database: 'travis_ci_test',
+   password: '',
+   host: 'localhost',
+   port: 5432,
+   max: 10,
+   idleTimeoutMillis: 30000,
+ };
+var client = new pg.Client(config);
 
 beforeEach(function() {
   client.connect(function(err, client, done) {
