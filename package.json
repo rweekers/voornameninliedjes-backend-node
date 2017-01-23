@@ -14,7 +14,7 @@
     "mocha": "*"
   },
   "scripts": {
-    "test": "node test.js"
+    "test": "mocha test.js"
   },
   "repository": {
     "type": "git",
