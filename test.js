@@ -8,7 +8,6 @@ var pg = require('pg');
 var client = new pg.Client();
 
 beforeEach(function() {
-  console.log("DB connString: " + config);
   client.connect(function(err, client, done) {
     if(err) {
       return console.error('error fetching client from pool', err);
