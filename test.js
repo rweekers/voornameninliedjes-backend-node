@@ -5,16 +5,20 @@ var fs = require('fs');
 var nconf = require('nconf'); 
 
 var pg = require('pg');
-var client = new pg.Client({
-   user: 'postgres',
-   password: '',
-   database: 'travis_ci_test',
-   host: 'localhost',
-   port: 5432
- });
+var config = {
+  user: 'postgres', //env var: PGUSER
+  database: 'travis_ci_test', //env var: PGDATABASE
+  password: '', //env var: PGPASSWORD
+  host: 'localhost', // Server hosting the postgres database
+  port: 5432, //env var: PGPORT
+  max: 10, // max number of clients in the pool
+  idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
+};
+
+var pool = new pg.Pool(config);
 
 beforeEach(function() {
-  client.connect(function(err, done) {
+  pool.connect(function(err, client, done) {
     if(err) {
       return console.error('error fetching client from pool', err);
     }
