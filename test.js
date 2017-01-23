@@ -14,7 +14,7 @@ beforeEach(function() {
       return console.error('error fetching client from pool', err);
     }
     client.query("DROP TABLE IF EXISTS SONG;");
-    client.query("CREATE TABLE SONG(artist char(40) NOT NULL, title varchar(40) NOT NULL, name_index integer, name_length integer, date_inserted date, user_inserted varchar(40));");
+    client.query("CREATE TABLE SONG(artist char(40) NOT NULL, title varchar(40) NOT NULL, firstname varchar(40), name_index integer, name_length integer, date_inserted date, user_inserted varchar(40));");
     client.query("DELETE FROM SONG");
     client.query("INSERT INTO SONG(artist, title, firstname, name_index, name_length, date_inserted, user_inserted) " + 
       "VALUES('The Police', 'Roxanne', 'Roxanne', 0, 7, now(), 'Tester')");
