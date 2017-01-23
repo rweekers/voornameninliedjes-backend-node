@@ -5,7 +5,7 @@ var fs = require('fs');
 var nconf = require('nconf'); 
 
 var pg = require('pg');
-var client = new Client({
+var client = new pg.Client({
    user: 'postgres',
    password: '',
    database: 'travis_ci_test',
