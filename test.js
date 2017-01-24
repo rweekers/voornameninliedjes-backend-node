@@ -16,13 +16,9 @@ var client = new pg.Client({
     });
 client.connect();
 
-var query = client.query("SELECT name FROM users", function(err, result) {
-      console.log(result.rows[0].name);
-    })
-
 var query = client.query("SELECT * FROM (VALUES (1, 'one'), (2, 'two'), (3, 'three')) AS t (num,letter);", function(err, result) {
       console.log(result.rows[0].letter);
-    })
+    });
 
 /*
 beforeEach(function() {
