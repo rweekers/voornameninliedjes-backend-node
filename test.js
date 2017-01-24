@@ -11,7 +11,7 @@ var connString = 'postgres://postgres@localhost/travis_ci_test';
 var pool = new pg.Pool(config);
 
 beforeEach(function() {
-  console.log("DB connString: " + connString + " on " NODE_ENV);
+  console.log("DB connString: " + connString + " on " + NODE_ENV);
   pg.connect(connString, function(err, client, done) {
     if(err) {
       return console.error('error fetching client from pool', err);
