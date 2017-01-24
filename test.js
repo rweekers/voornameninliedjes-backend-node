@@ -8,8 +8,6 @@ var pg = require('pg');
 // var connString = 'postgres://' + nconf.get('database:username') + ':' + nconf.get('database:password') + '@' + nconf.get('database:host') + '/' + nconf.get('database:testname');
 var connString = 'postgres://postgres@localhost/travis_ci_test';
 
-var pool = new pg.Pool(config);
-
 beforeEach(function() {
   console.log("DB connString: " + connString + " on " + NODE_ENV);
   pg.connect(connString, function(err, client, done) {
