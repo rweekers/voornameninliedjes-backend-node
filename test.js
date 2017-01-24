@@ -11,15 +11,14 @@ var connString = 'postgres://postgres@localhost:5432/travis_ci_test';
 var client = new pg.Client({
       user: 'postgres',
       database: 'travis_ci_test',
-      host: '127.0.0.1',
-      port: 5432
+      host: '127.0.0.1'
+      // port: 5432
     });
-client.connect();
-
-console.log('connected to database');
 
 beforeEach(function() {
       console.log('beforeEach...');
+      client.connect();
+      console.log('connected to database');
       client.query("DROP TABLE IF EXISTS SONG;");
       client.query("CREATE TABLE SONG(artist char(40) NOT NULL, title varchar(40) NOT NULL, firstname varchar(40), name_index integer, name_length integer, date_inserted date, user_inserted varchar(40));");
       console.log('created table');
