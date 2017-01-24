@@ -6,7 +6,14 @@ var nconf = require('nconf');
 
 var pg = require('pg');
 // var connString = 'postgres://' + nconf.get('database:username') + ':' + nconf.get('database:password') + '@' + nconf.get('database:host') + '/' + nconf.get('database:testname');
-var connString = 'postgres://postgres@localhost/travis_ci_test';
+var connString = 'postgres://postgres@localhost:5432/travis_ci_test';
+
+var client = new Client({
+      user: 'postgres',
+      database: 'travis_ci_test',
+      host: '127.0.0.1',
+      port: 5432
+    });
 
 beforeEach(function() {
   console.log("DB connString: " + connString + " on " + process.env.ENV);
