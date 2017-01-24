@@ -23,6 +23,10 @@ console.log('made query');
 client.query("DROP TABLE IF EXISTS SONG;");
 console.log('dropped table');
 
+beforeEach(function() {
+       client.query("CREATE TABLE SONG(artist char(40) NOT NULL, title varchar(40) NOT NULL, firstname varchar(40), name_index integer, name_length integer, date_inserted date, user_inserted varchar(40));");
+});
+
 /*
 beforeEach(function() {
   console.log("DB connString: " + connString + " on " + process.env.ENV);
