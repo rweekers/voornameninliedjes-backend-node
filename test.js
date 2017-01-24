@@ -19,6 +19,9 @@ client.connect();
 var query = client.query("SELECT * FROM (VALUES (1, 'one'), (2, 'two'), (3, 'three')) AS t (num,letter);", function(err, result) {
       console.log(result.rows[0].letter);
     });
+console.log('made query');
+client.query("DROP TABLE IF EXISTS SONG;");
+console.log('dropped table');
 
 /*
 beforeEach(function() {
