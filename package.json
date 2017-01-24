@@ -6,7 +6,7 @@
   "dependencies": {
     "express": "^4.13.4",
     "nconf": "^0.7.2",
-    "pg": "^4.4.6",
+    "pg": "^6.1.2",
     "cors": "^2.8.1"
   },
   "devDependencies": {
