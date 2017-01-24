@@ -11,7 +11,7 @@ var connString = 'postgres://postgres@localhost:5432/travis_ci_test';
 var client = new pg.Client({
       user: 'postgres',
       database: 'travis_ci_test',
-      hostname: 'localhost'
+      hostname: 'localhost',
       port: 5432
     });
 
