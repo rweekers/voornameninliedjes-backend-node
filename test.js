@@ -5,15 +5,8 @@ var fs = require('fs');
 var nconf = require('nconf'); 
 
 var pg = require('pg');
-var config = {
-  user: 'postgres', //env var: PGUSER
-  database: 'travis_ci_test', //env var: PGDATABASE
-  password: '', //env var: PGPASSWORD
-  host: 'localhost', // Server hosting the postgres database
-  port: 5432, //env var: PGPORT
-  max: 10, // max number of clients in the pool
-  idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
-};
+// var connString = 'postgres://' + nconf.get('database:username') + ':' + nconf.get('database:password') + '@' + nconf.get('database:host') + '/' + nconf.get('database:testname');
+var connString = 'postgres://postgres@localhost/travis_ci_test';
 
 var pool = new pg.Pool(config);
 
