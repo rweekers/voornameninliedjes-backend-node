@@ -71,7 +71,7 @@ beforeEach(function() {
       "VALUES('The Police', 'Roxanne', 'Roxanne', 0, 7, now(), 'Tester')");
   });
 });
-
+*/
 describe('Request the list of songs', function() {
   it('Returns a 200 status code', function(done) {
     request(app)
