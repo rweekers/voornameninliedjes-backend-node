@@ -18,6 +18,8 @@ var client = new pg.Client({
 beforeEach(function() {
   console.log("DB connString: " + connString + " on " + process.env.ENV);
   console.log("Node env " + process.env.NODE_ENV);
+      client.connect();
+      /*
   pg.connect(connString, function(err, client, done) {
     if(err) {
       return console.error('error fetching client from pool', err);
@@ -27,7 +29,7 @@ beforeEach(function() {
     client.query("DELETE FROM SONG");
     client.query("INSERT INTO SONG(artist, title, firstname, name_index, name_length, date_inserted, user_inserted) " + 
       "VALUES('The Police', 'Roxanne', 'Roxanne', 0, 7, now(), 'Tester')");
-  });
+  });*/
 });
 
 describe('Request the list of songs', function() {
