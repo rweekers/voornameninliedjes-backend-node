@@ -96,6 +96,8 @@ app.get('/api/n/songs/', function(request, response) {
 });
 
 app.get('/api/n/songs/:id', function(request, response) {
+  console.log('NODE_ENV: ' + nconf.get('NODE_ENV'));
+  console.log('NODE_ENV2: ' + process.env.NODE_ENV);
   //this starts initializes a connection pool
 	//it will keep idle connections open for a (configurable) 30 seconds
 	//and set a limit of 20 (also configurable)
