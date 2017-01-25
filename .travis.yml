@@ -1,11 +1,6 @@
 language: node_js
 node_js:
   - "6"
-addons:
-  sonarqube:
-script:
-# other script steps might be done before running the actual SonarQube analysis
-  - sonar-scanner
 services:
   - postgresql
 before_script:
@@ -17,3 +12,8 @@ addons:
   postgresql: "9.4"
 env:
   NODE_ENV: "travis"
+addons:
+  sonarqube:
+script:
+# other script steps might be done before running the actual SonarQube analysis
+  - sonar-scanner
