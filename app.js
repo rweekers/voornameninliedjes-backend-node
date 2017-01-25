@@ -20,6 +20,10 @@ if (nconf.get('NODE_ENV') === 'test') {
 	console.log('NODE_ENV: ' + nconf.get('NODE_ENV'));
 	db = nconf.get('database:testname');
 }
+
+console.log('NODE_ENV: ' + nconf.get('NODE_ENV'));
+console.log('NODE_ENV2: ' + process.env.NODE_ENV);
+
 var connString2 = 'postgres://' + nconf.get('database:username') + ':' + nconf.get('database:password') + '@' + nconf.get('database:host') + '/' + db;
 var connString = 'postgres://postgres@localhost:5432/travis_ci_test';
 

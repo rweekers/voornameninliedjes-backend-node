@@ -10,3 +10,5 @@ before_script:
   - psql -c "insert into song(id, artist, title, firstname, name_index, name_length, date_inserted, user_inserted) values(1, 'The Police', 'Roxanne', 'Roxanne', 0, 7, now(), 'Tester');" -U postgres travis_ci_test
 addons:
   postgresql: "9.4"
+env:
+  NODE_ENV: "travis"
