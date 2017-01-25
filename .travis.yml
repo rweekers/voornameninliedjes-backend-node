@@ -3,6 +3,9 @@ node_js:
   - "6"
 addons:
   sonarqube:
+script:
+# other script steps might be done before running the actual SonarQube analysis
+  - sonar-scanner
 services:
   - postgresql
 before_script:
