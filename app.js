@@ -82,7 +82,7 @@ app.get('/api/n/songs/', function(request, response) {
 	    	done();
 
 	    	if(err) {
-	     		return console.error('error running query', err);
+	     		return console.error('error running query ' + query + ' with error: ', err);
 	    	}
       	return response.json({data: result.rows, meta: {total_pages: totalPages(resultTotal.rows[0].total,perPage)}});
 
