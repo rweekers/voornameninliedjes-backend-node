@@ -139,9 +139,7 @@ app.get('/api/n/items/', function(request, response) {
 });
 
 app.listen(3000, function() {
-	console.log('Listening on port 3000');
-	console.log('NODE_ENV: ' + nconf.get('NODE_ENV'));
-	console.log('NODE_ENV2: ' + process.env.NODE_ENV);
+	console.log('Listening on port 3000: ' + process.env.NODE_ENV);
 });
 
 module.exports = app;
