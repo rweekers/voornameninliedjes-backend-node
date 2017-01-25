@@ -15,7 +15,7 @@ beforeEach(function() {
       return console.error('error fetching client from pool', err);
     }
     client.query("INSERT INTO song(id, artist, title, firstname, name_index, name_length, date_inserted, user_inserted) " + 
-      "VALUES(1, 'The Police', 'Roxanne', 'Roxanne', 0, 7, now(), 'Tester')");
+      "VALUES(2, 'Paul Simon', 'You can call me Al', 'Al', 5, 5, now(), 'Tester')");
   });
 });
 
