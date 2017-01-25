@@ -1,6 +1,5 @@
 language: node_js
 # See http://stackoverflow.com/questions/40208309/travis-ci-build-failing-on-android-app-unsupported-major-minor-version-52
-jdk: oraclejdk8
 node_js:
   - "6"
 services:
@@ -14,6 +13,7 @@ addons:
   postgresql: "9.4"
 env:
   NODE_ENV: "travis"
+jdk: oraclejdk8
 addons:
   sonarqube:
 script:
