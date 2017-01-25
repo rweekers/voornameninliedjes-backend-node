@@ -21,9 +21,6 @@ if (nconf.get('NODE_ENV') === 'test') {
 	db = nconf.get('database:testname');
 }
 
-console.log('NODE_ENV: ' + nconf.get('NODE_ENV'));
-console.log('NODE_ENV2: ' + process.env.NODE_ENV);
-
 var connString2 = 'postgres://' + nconf.get('database:username') + ':' + nconf.get('database:password') + '@' + nconf.get('database:host') + '/' + db;
 var connString = 'postgres://postgres@localhost:5432/travis_ci_test';
 
@@ -96,8 +93,6 @@ app.get('/api/n/songs/', function(request, response) {
 });
 
 app.get('/api/n/songs/:id', function(request, response) {
-  console.log('NODE_ENV: ' + nconf.get('NODE_ENV'));
-  console.log('NODE_ENV2: ' + process.env.NODE_ENV);
   //this starts initializes a connection pool
 	//it will keep idle connections open for a (configurable) 30 seconds
 	//and set a limit of 20 (also configurable)
@@ -145,6 +140,8 @@ app.get('/api/n/items/', function(request, response) {
 
 app.listen(3000, function() {
 	console.log('Listening on port 3000');
+	console.log('NODE_ENV: ' + nconf.get('NODE_ENV'));
+	console.log('NODE_ENV2: ' + process.env.NODE_ENV);
 });
 
 module.exports = app;
