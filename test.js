@@ -14,6 +14,7 @@ beforeEach(function() {
     if(err) {
       return console.error('error fetching client from pool', err);
     }
+    client.query("delete from song");
     client.query("INSERT INTO song(id, artist, title, firstname, name_index, name_length, date_inserted, user_inserted) " + 
       "VALUES(2, 'Paul Simon', 'You can call me Al', 'Al', 5, 5, now(), 'Tester')");
   });
