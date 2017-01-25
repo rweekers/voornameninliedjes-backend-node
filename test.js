@@ -9,7 +9,7 @@ describe('Request the list of songs', function() {
   });
 });
 
-describe('Request a limited and filtered list of songs', function() {
+describe('Request a limited and filtered list of songs on '  + process.env.NODE_ENV, function() {
   it('Returns a 200 status code', function(done) {
     request(app)
       .get('/api/n/songs?filter=Johnny&limit=10&offset=10')
