@@ -14,7 +14,6 @@ beforeEach(function() {
     if(err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query("CREATE TABLE song(id integer PRIMARY KEY, artist char(40) NOT NULL, title varchar(40) NOT NULL, firstname varchar(40), name_index integer, name_length integer, date_inserted date, user_inserted varchar(40));");
     client.query("INSERT INTO song(id, artist, title, firstname, name_index, name_length, date_inserted, user_inserted) " + 
       "VALUES(1, 'The Police', 'Roxanne', 'Roxanne', 0, 7, now(), 'Tester')");
   });
