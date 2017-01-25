@@ -4,8 +4,6 @@ var app = express();
 
 app.use(cors());
 
-// var redis = require('redis');
-// var client = redis.createClient();
 var fs = require('fs');
 var nconf = require('nconf');
 
@@ -17,12 +15,13 @@ var pg = require('pg');
 
 var db = nconf.get('database:name');
 if (nconf.get('NODE_ENV') === 'test') {
-	console.log('NODE_ENV: ' + nconf.get('NODE_ENV'));
-	db = nconf.get('database:testname');
+  db = nconf.get('database:testname');
 }
 
-var connString2 = 'postgres://' + nconf.get('database:username') + ':' + nconf.get('database:password') + '@' + nconf.get('database:host') + '/' + db;
-var connString = 'postgres://postgres@localhost:5432/travis_ci_test';
+var connString = 'postgres://' + nconf.get('database:username') + ':' + nconf.get('database:password') + '@' + nconf.get('database:host') + '/' + db;
+if (nconf.get('NODE_ENV') === 'travis') {
+	connString = 'postgres://postgres@localhost:5432/travis_ci_test';
+}
 
 var totalPages = function(total, perPage) {
   return Math.ceil(total/perPage);
