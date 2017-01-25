@@ -5,6 +5,6 @@ services:
   - postgresql
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
-  - psql -c 'create table song (id integer) values (1);' -U postgres
+  - psql -c 'create table song(artist char(40) NOT NULL, title varchar(40) NOT NULL, firstname varchar(40), name_index integer, name_length integer, date_inserted date, user_inserted varchar(40));' -U postgres
 addons:
   postgresql: "9.4"
