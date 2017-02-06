@@ -1,4 +1,8 @@
 language: node_js
+
+# See https://github.com/travis-ci/travis-ci/issues/6631 and https://docs.travis-ci.com/user/trusty-ci-environment/
+dist: trusty
+
 # See http://stackoverflow.com/questions/40208309/travis-ci-build-failing-on-android-app-unsupported-major-minor-version-52
 node_js:
   - "6"
@@ -18,4 +22,4 @@ addons:
   sonarqube:
 script:
 # other script steps might be done before running the actual SonarQube analysis
-#   - sonar-scanner
+- sonar-scanner
