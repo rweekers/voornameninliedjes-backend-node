@@ -10,11 +10,13 @@
     "cors": "^2.8.1"
   },
   "devDependencies": {
-    "supertest": "^1.0.1",
-    "mocha": "*"
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "supertest": "^1.0.1"
   },
   "scripts": {
-    "test": "mocha ./test/test.js"
+    "test": "mocha ./test/test.js",
+    "cover": "istanbul cover _mocha"
   },
   "repository": {
     "type": "git",
