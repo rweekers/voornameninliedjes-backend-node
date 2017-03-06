@@ -23,4 +23,5 @@ addons:
 script:
 # other script steps might be done before running the actual SonarQube analysis
 - mocha test/test.js
+- istanbul cover test/test.js
 - sonar-scanner
